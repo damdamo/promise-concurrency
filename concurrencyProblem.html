@@ -1,0 +1,31 @@
+<!-- Non determinism problem ! -->
+<!DOCTYPE html>
+<script>
+// Make a request for user damdamo on github
+fetch('https://api.github.com/users/damdamo')
+  // Load it as json
+  .then(response => response.json())
+  // Show the avatar image
+  .then(githubUser => {
+    let img = document.createElement('img');
+    img.src = githubUser.avatar_url;
+    img.className = "promise-avatar-example";
+    document.body.append(img);
+
+    setTimeout(() => img.remove(), 3000); // (*)
+  });
+
+// Make a request for user coetaur0 on github
+fetch('https://api.github.com/users/coetaur0')
+  // Load it as json
+  .then(response => response.json())
+  // Show the avatar image
+  .then(githubUser => {
+    let img = document.createElement('img');
+    img.src = githubUser.avatar_url;
+    img.className = "promise-avatar-example";
+    document.body.append(img);
+
+    setTimeout(() => img.remove(), 3000); // (*)
+  });
+</script>

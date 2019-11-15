@@ -1,0 +1,25 @@
+<!-- Solution Non determinism problem ! -->
+<!DOCTYPE html>
+<script>
+// Make a request for user damdamo on github
+var p1 = fetch('https://api.github.com/users/damdamo')
+  // Load it as json
+  .then(response => response.json());
+
+// Make a request for user coetaur0 on github
+var p2 = fetch('https://api.github.com/users/coetaur0')
+  // Load it as json
+  .then(response => response.json());
+
+Promise.all([p1, p2]).then(users => {
+  var img;
+  var i;
+  for (i = 0; i < 2; i++) {
+    img = document.createElement('img');
+    img.src = users[i].avatar_url;
+    img.className = "promise-avatar-example";
+    document.body.append(img);
+  }
+  console.log(users);
+});
+</script>
